@@ -1,0 +1,22 @@
+# Fixed coarse vocabulary for leakage-controlled IPR preprocessing.
+# It is scene independent and intentionally avoids benchmark query phrases.
+animate entity
+edible item
+drinkware category
+seating furniture
+consumer electronics
+handheld implement
+wearable item
+vegetation category
+play object
+reading material
+architectural surface
+textile item
+transport object
+personal accessory
+decorative item
+storage container
+tabletop item
+soft furnishing
+miscellaneous foreground
+scene background

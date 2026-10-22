@@ -1,0 +1,43 @@
+* text=auto
+
+# Linux/server entry points must retain LF line endings on Windows checkouts.
+*.sh text eol=lf
+*.py text eol=lf
+*.mjs text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.c text eol=lf
+*.cc text eol=lf
+*.cpp text eol=lf
+*.cxx text eol=lf
+*.cu text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.inl text eol=lf
+*.cmake text eol=lf
+*.cfg text eol=lf
+*.ini text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+CMakeLists.txt text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Binary research assets.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pptx binary
+*.docx binary
+*.xlsx binary
+*.pdf binary
+*.pth binary
+*.pt binary
+*.ply binary
+*.npy binary
+*.npz binary

@@ -1,0 +1,82 @@
+# Python caches and test state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE and local environment files
+.idea/
+.vscode/
+.env
+.env.*
+
+# Local datasets, checkpoints, and model outputs
+dataset/
+output/
+outputs/
+autoencoder/ckpt/
+server_snapshot/
+
+# Separate nested repository; keep it versioned independently
+gaussian_occ_bridge/
+portfolio/
+
+# Native extension build products
+submodules/**/build/
+submodules/**/*.egg-info/
+submodules/**/third_party/**/doc/
+*.so
+*.o
+*.a
+*.pth
+*.pt
+*.ckpt
+*.ply
+*.npy
+*.npz
+
+# Generated document, slide, and figure workspaces
+tmp/
+tmp_*/
+_codex_tmp/
+.codex*/
+.artifact_build*/
+.chart-data-*/
+.ppt_build/
+.tmp_*/
+
+# Logs and temporary archives
+*.log
+*.tmp
+*.bak
+*.tar
+*.tar.gz
+*.zip
+*.pdf
+
+# Local paper-reading and drafting notes, retained on disk only
+*_extracted.txt
+_template_text.txt
+work.md
+paper_draft_with_postprocess.md
+controlled_lerf_final_results.md
+experiment_audit_*.md
+
+# Superseded local-only experiments and unrelated writing helpers
+align_deva_object_masks.py
+debug_lerf_query.py
+generate_object_masks_sam2_semantic.py
+refine_object_masks_trajectory.py
+refine_object_masks_v2anchor.py
+segmentation_mask_auto_select.py
+segmentation_mask_full_refine.py
+segmentation_mask_official_fixed.py
+build_job_resume.py
+clarify_problem_statement.py
+fix_teacher_revision_formulas.py
+format_body_math_variables.py
+polish_ilgs_docx.py
+replace_teatime_figure_with_inset.py
+revise_ilgs_teacher_docx.py
+update_full_refine_section.py
