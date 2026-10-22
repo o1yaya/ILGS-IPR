@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPORT_ROOT="${REPORT_ROOT:-/media/cx/data/cxdata/ilgs_lerf_ovs_standard}"
+REPORT_ROOT="${REPORT_ROOT:-results/lerf_ovs}"
 
 python script/merge_lerf_ovs_baselines.py \
   --reproduced_by_scene "$REPORT_ROOT/reports/lerf_ovs_standard_by_scene.csv" \

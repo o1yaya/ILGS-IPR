@@ -365,7 +365,11 @@ if __name__ == '__main__':
         help='Image directory inside dataset_path. Use images_4 for quarter-resolution training.',
     )
     parser.add_argument('--resolution', type=int, default= 1)
-    parser.add_argument('--sam_ckpt_path', type=str, default="ckpts/sam_vit_h_4b8939.pth")
+    parser.add_argument(
+        '--sam_ckpt_path',
+        type=str,
+        default="checkpoints/sam_vit_h_4b8939.pth",
+    )
     parser.add_argument(
         '--clip_checkpoint',
         default=os.environ.get('OPENCLIP_CHECKPOINT'),

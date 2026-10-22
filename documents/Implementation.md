@@ -9,7 +9,11 @@ A quick-start guide for preprocessing scene language features, training ILGS, pe
 Generate language features of the scenes:
 
 ```bash
-python preprocess.py --dataset_path $dataset_path
+dataset_path="$(realpath dataset/lerf/teatime)"
+python preprocess.py \
+  --dataset_path "$dataset_path" \
+  --sam_ckpt_path checkpoints/sam_vit_h_4b8939.pth \
+  --clip_checkpoint checkpoints/open_clip_pytorch_model.bin
 ```
 
 Train the autoencoder and extract 3-dimensional scene features:
@@ -18,14 +22,17 @@ Train the autoencoder and extract 3-dimensional scene features:
 # Train the autoencoder
 cd autoencoder
 python train.py \
-  --dataset_name $dataset_path \
+  --dataset_path "$dataset_path" \
+  --dataset_name lerf/teatime \
   --encoder_dims 256 128 64 32 3 \
   --decoder_dims 16 32 64 128 256 256 512 \
-  --lr 0.0007 \
-  --output ae_ckpt
+  --lr 0.0007
 
 # Extract 3-D features
-python test.py --dataset_name $dataset_path --output
+python test.py \
+  --dataset_path "$dataset_path" \
+  --dataset_name lerf/teatime
+cd ..
 ```
 
 ---

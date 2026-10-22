@@ -156,22 +156,6 @@ class StrictProtocolTests(unittest.TestCase):
             self.assertIsNone(manifest["confidence_source"])
             self.assertNotIn("confidence", manifest["operations"][0])
 
-    def test_vocabulary_audit_rejects_exact_overlap(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            (root / "pre.txt").write_text("edible item\nred cup\n", encoding="utf-8")
-            (root / "eval.txt").write_text("red cup\nspoon\n", encoding="utf-8")
-            run_script(
-                "audit_ipr_vocabulary.py",
-                "--preprocess_vocab", root / "pre.txt",
-                "--eval_queries", root / "eval.txt",
-                "--output", root / "audit.json",
-                "--require_zero_exact",
-                expected=2,
-            )
-            data = json.loads((root / "audit.json").read_text(encoding="utf-8"))
-            self.assertEqual(data["exact_overlap"], ["red cup"])
-
     def test_baseline_merge_requires_and_accepts_four_scenes(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -2,13 +2,12 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-EXTERNAL_ROOT="${EXTERNAL_ROOT:-/media/cx/data/cxdata/ilgs_ipr_strict_protocol}"
+EXTERNAL_ROOT="${EXTERNAL_ROOT:-results/lerf_mask/main}"
 DATASET_ROOT="${DATASET_ROOT:-dataset/lerf}"
 SCENES="${SCENES:-figurines ramen teatime}"
 SEEDS="${SEEDS:-0 1 2}"
 RESOLUTION="${RESOLUTION:-1}"
-VARIANTS="${VARIANTS:-strict_official strict_allview_evalvocab strict_trainview_evalvocab strict_trainview_independent}"
-ALLVIEW_CONF_DIR="${ALLVIEW_CONF_DIR:-object_confidence_ipr_no_visibility}"
+VARIANTS="${VARIANTS:-official strict_trainview_consistency}"
 REUSE_CURRENT_MODELS="${REUSE_CURRENT_MODELS:-0}"
 
 mkdir -p "$EXTERNAL_ROOT/output/lerf" "$EXTERNAL_ROOT/logs/train" output/lerf
@@ -18,16 +17,6 @@ variant_inputs() {
   case "$1" in
     official)
       MASK_DIR="object_mask"; CONF_DIR="" ;;
-    strict_official)
-      MASK_DIR="object_mask"; CONF_DIR="" ;;
-    strict_allview_evalvocab)
-      MASK_DIR="object_mask_refined"; CONF_DIR="$ALLVIEW_CONF_DIR" ;;
-    strict_trainview_evalvocab)
-      MASK_DIR="object_mask_refined_trainonly_strict"; CONF_DIR="object_confidence_ipr_trainview_evalvocab_strict" ;;
-    strict_trainview_independent)
-      MASK_DIR="object_mask_refined_trainonly_strict"; CONF_DIR="object_confidence_ipr_trainview_independent_strict" ;;
-    strict_trainview_areaonly)
-      MASK_DIR="object_mask_refined_trainonly_strict"; CONF_DIR="object_confidence_ipr_trainview_areaonly_strict" ;;
     strict_trainview_consistency)
       MASK_DIR="object_mask_refined_trainonly_strict"; CONF_DIR="object_confidence_ipr_trainview_consistency_strict" ;;
     strict_trainview_consistency_t[0-9][0-9][0-9])
@@ -42,7 +31,7 @@ variant_inputs() {
       MASK_DIR="object_mask_refined_trainonly_strict"; CONF_DIR="object_confidence_ipr_trainview_consistency_only_strict" ;;
     strict_trainview_large_only)
       MASK_DIR="object_mask_refined_trainonly_strict"; CONF_DIR="object_confidence_ipr_trainview_large_only_strict" ;;
-    *) echo "Unknown strict-protocol variant: $1" >&2; return 1 ;;
+    *) echo "Unknown IPR variant: $1" >&2; return 1 ;;
   esac
 }
 

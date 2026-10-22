@@ -1,90 +1,100 @@
-<h1 align="center">Identity-aware Language Gaussian Splatting for Open-vocabulary 3D Semantic Segmentation</h1>
+# ILGS-IPR
 
-> **Repository status.** This working tree extends the released ILGS code with
-> Identity-Preserving Reliability (IPR), controlled multi-seed experiments, and
-> additional evaluation tooling. It is not an unmodified copy of the official
-> release. See [IPR code changes and verified results](documents/IPR_CODE_CHANGES_AND_RESULTS.md)
-> for the exact method boundary, canonical scripts, and reported numbers.
+Research code for **Identity-Preserving Reliability (IPR)** on top of the
+released Identity-aware Language Gaussian Splatting (ILGS) implementation.
+IPR estimates query-free reliability from training-view identity tracks and
+uses the resulting pixel confidence map to reweight only the 2D identity loss.
+The Gaussian representation, language branch, and text-query inference path
+remain unchanged.
 
-<!-- <p align="center">
-  <a href="https://iccv.thecvf.com//"><img src="https://img.shields.io/badge/ICCV-2025-blue.svg?style=flat-square"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=flat-square"></a>
-  <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-%E2%9D%A4-red.svg?style=flat-square"></a>
-</p> -->
+This is a modified research repository, not an unmodified copy of the official
+ILGS release. The implementation boundary and verified results are documented
+in [IPR_CODE_CHANGES_AND_RESULTS.md](documents/IPR_CODE_CHANGES_AND_RESULTS.md).
 
-Official Pytorch implementation [**"Identity-aware Language Gaussian Splatting for Open-vocabulary 3D Semantic Segmentation"**](https://openaccess.thecvf.com/content/ICCV2025/papers/Jang_Identity-aware_Language_Gaussian_Splatting_for_Open-vocabulary_3D_Semantic_Segmentation_ICCV_2025_paper.pdf) <br>
-[SungMin Jang](https://github.com/jsmbank), and [Wonjun Kim](https://sites.google.com/view/dcvl) (Corresponding Author) <br>
-🌸***IEEE/CVF International Conference on Computer Vision, (ICCV)***, Oct. 2025.🌸
+## Repository layout
 
-[![Video](https://img.shields.io/badge/YouTube-Video-c4302b?logo=youtube&logoColor=red)](https://www.youtube.com/watch?v=IdJYIZfuwfE&t=5s)
+| Path | Purpose |
+|---|---|
+| `train.py` | Controlled ILGS training with optional IPR confidence maps |
+| `refine_object_masks.py` | Training-view mask cleanup and base confidence |
+| `refine_object_masks_semantic_area.py` | Cross-view consistency and area-risk weighting |
+| `arguments/`, `scene/`, `gaussian_renderer/`, `utils/` | ILGS/3DGS core implementation |
+| `script/` | Final preprocessing, training, evaluation, ablation, and figure entry points |
+| `config/experiments/paper_final.env` | Portable experiment defaults |
+| `tests/` | Protocol and evaluation regression tests |
 
-![ Training pipeline ](documents/Pipeline.jpeg)
-<p align="center">[ Training pipeline ]</p>
+Datasets, checkpoints, model outputs, and generated figures are intentionally
+excluded from Git.
 
-## :eyes: Overview
+## Installation
 
-We propose **Identity-aware Language Gaussian Splatting (ILGS)**, a simple yet powerful method to resolve view-inconsistent language embeddings for open-vocabulary 3D semantic segmentation.
+Follow [Installation.md](documents/Installation.md), then place the required
+assets under:
 
-ILGS introduces two key components: an **identity-aware semantic consistency loss** to ensure consistent features across views, and a **progressive mask expanding** scheme for precise boundary segmentation.
-
-This repository additionally implements **IPR**, which estimates query-free
-reliability from training-view identity tracks and uses the resulting confidence
-maps to reweight the two-dimensional identity loss. The Gaussian representation
-and text-query inference path remain unchanged.
-
-Canonical experiment settings are stored in
-[`config/experiments/paper_final.env`](config/experiments/paper_final.env). The
-reproduction entry points are documented in
-[`documents/EXPERIMENTS_FINAL.md`](documents/EXPERIMENTS_FINAL.md).
-
-We provide:
-
-- ✅ **Full Implementation**: The complete source code for ILGS.
-- 🪄 **3D Editing**: Examples of object removal, color modification, and resizing.
-
-## 💿 Installation
-
-For detailed instructions on how to set up the environment and install dependencies, please refer to our [Installation.md](documents/Installation.md) 
-
-## 📂 Download
-
-We provide guidelines to download datasets. </br>
-Please check [Download.md](documents/Download.md) for more information.
-
-## ✅ Full Implementation
-
-To get started with the full implementation of our open-vocabulary segmentation model, please follow the instructions in the [Implementation.md](documents/Implementation.md).
-
-
-## 🪄 3D Editing 
-For instructions on our 3D editing features, please refer to the [Editing.md](documents/Edit.md). This guide explains how to launch the interactive demos and use functionalities like object removal, color modification, and resizing.
-
-## Results
-
-**Below are the semantic segmentation results of our proposed method on the LERF-Mask benchmark.**
-![result](documents/Result.jpg)
-
-## License
-
-This project is licensed under the **Apache License 2.0**, with the exception of certain components derived from the [Gaussian Splatting](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) project.
-
-- **Apache License 2.0**: All original code written for ILGS is released under the Apache 2.0 license. See [LICENSE](./LICENSE).
-- **Non-commercial License (Inria & MPII)**: Some parts of the code are based on Gaussian Splatting, which is licensed for **non-commercial research use only**. See [LICENSE_GAUSSIAN_SPLATTING.md](./LICENSE_GAUSSIAN_SPLATTING.md) for full terms.
-
-Please ensure that you comply with both licenses when using this repository.
-
-
-## Acknowledgments
-This work was supported by the National Research Foundation of Korea (NRF) funded by the Korea Government (MSIT) under Grant RS-2023-NR076462.
-
-Our implementation and experiments are built on top of open-source GitHub repositories. We thank all the authors who made their code public, which tremendously accelerates our project progress. If you find these works helpful, please consider citing them as well.
-
-[lkeab/gaussian-grouping](https://github.com/lkeab/gaussian-grouping)  </br>
-[minghanqin/LangSplat](https://github.com/minghanqin/LangSplat)  </br>
-
-## Citation
-If you find our work useful for your project, please consider citing the following paper.
+```text
+dataset/lerf/<scene>/
+dataset/3dovs/<scene>/
+checkpoints/open_clip_pytorch_model.bin
+checkpoints/sam_vit_h_4b8939.pth
+autoencoder/ckpt/<dataset>/<scene>/best_ckpt.pth
 ```
+
+Dataset layout and the original ILGS preprocessing steps are described in
+[Download.md](documents/Download.md) and
+[Implementation.md](documents/Implementation.md).
+
+## Quick start
+
+Run commands from the repository root in the `ILGS` Conda environment:
+
+```bash
+conda activate ILGS
+set -a
+source config/experiments/paper_final.env
+set +a
+```
+
+Prepare query-free IPR supervision:
+
+```bash
+DATASET_ROOT="$LERF_DATASET_ROOT" SCENES="$LERF_SCENES" \
+CONSISTENCY_THRESHOLD="$IPR_THRESHOLD" \
+bash script/prepare_ipr_strict_protocol.sh
+
+DATASET_ROOT="$OVS_DATASET_ROOT" SCENES="$OVS_SCENES" \
+CONSISTENCY_THRESHOLD="$IPR_THRESHOLD" \
+bash script/prepare_3dovs_ipr_consistency.sh
+```
+
+Train the final variants:
+
+```bash
+EXTERNAL_ROOT="$LERF_MAIN_ROOT" DATASET_ROOT="$LERF_DATASET_ROOT" \
+SCENES="$LERF_SCENES" VARIANTS="$LERF_VARIANT" SEEDS="$LERF_SEEDS" \
+RESOLUTION=1 bash script/run_ipr_strict_protocol_2gpu.sh
+
+EXTERNAL_ROOT="$OVS_MAIN_ROOT" DATASET_ROOT="$OVS_DATASET_ROOT" \
+SCENES="$OVS_SCENES" VARIANTS="$OVS_VARIANT" SEEDS="$OVS_SEEDS" \
+RESOLUTION=4 bash script/run_3dovs_controlled_2gpu.sh
+```
+
+See [EXPERIMENTS_FINAL.md](documents/EXPERIMENTS_FINAL.md) for evaluation,
+component ablation, threshold sensitivity, and LERF-OVS appendix commands.
+
+## Tests
+
+```bash
+python -m unittest tests.test_ipr_protocol_tools -v
+```
+
+## Upstream project
+
+This work builds on the official ILGS code and paper:
+
+> SungMin Jang and Wonjun Kim. Identity-aware Language Gaussian Splatting for
+> Open-vocabulary 3D Semantic Segmentation. ICCV, 2025.
+
+```bibtex
 @inproceedings{jsmbankILGS,
   title={Identity-aware Language Gaussian Splatting for Open-vocabulary 3D Semantic Segmentation},
   author={SungMin Jang and Wonjun Kim},
@@ -93,3 +103,9 @@ If you find our work useful for your project, please consider citing the followi
 }
 ```
 
+## License
+
+Original ILGS code is distributed under Apache License 2.0. Components derived
+from Gaussian Splatting remain subject to the Inria/MPII non-commercial
+research license. See [LICENSE](LICENSE) and
+[LICENSE_GAUSSIAN_SPLATTING.md](LICENSE_GAUSSIAN_SPLATTING.md).

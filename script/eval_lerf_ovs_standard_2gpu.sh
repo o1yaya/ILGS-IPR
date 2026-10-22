@@ -2,12 +2,12 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin}"
+OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-checkpoints/open_clip_pytorch_model.bin}"
 DATASET_ROOT="${DATASET_ROOT:-dataset/lerf_ovs}"
 LABEL_ROOT="${LABEL_ROOT:-$DATASET_ROOT/label}"
 MODEL_ROOT="${MODEL_ROOT:-output/lerf_ovs}"
 AUTOENCODER_ROOT="${AUTOENCODER_ROOT:-autoencoder/ckpt/lerf}"
-REPORT_ROOT="${REPORT_ROOT:-/media/cx/data/cxdata/ilgs_lerf_ovs_standard}"
+REPORT_ROOT="${REPORT_ROOT:-results/lerf_ovs}"
 SCENES="${SCENES:-waldo_kitchen ramen figurines teatime}"
 MODEL_VARIANTS="${MODEL_VARIANTS:-${METHODS:-official no_visibility}}"
 SEEDS="${SEEDS:-0}"

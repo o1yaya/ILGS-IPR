@@ -1,10 +1,10 @@
 # Download
 
- Download datasets and pseudo labels for training.
+Download datasets and pseudo labels for training.
 
 ```bash
-mkir -p datasets  # datasets
-cd datasets
+mkdir -p dataset
+cd dataset
 ```
 
 ## LERF-Mask dataset

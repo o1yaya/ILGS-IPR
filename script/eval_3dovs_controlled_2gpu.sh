@@ -2,10 +2,10 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-EXTERNAL_ROOT="${EXTERNAL_ROOT:-/media/cx/data/cxdata/ilgs_3dovs}"
+EXTERNAL_ROOT="${EXTERNAL_ROOT:-results/3dovs/main}"
 REPORT_DIR="${REPORT_DIR:-$EXTERNAL_ROOT/reports}"
 DATASET_ROOT="${DATASET_ROOT:-dataset/3dovs}"
-OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin}"
+OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-checkpoints/open_clip_pytorch_model.bin}"
 SCENES="${SCENES:-bed}"
 VARIANTS="${VARIANTS:-official ipr}"
 SEEDS="${SEEDS:-0}"

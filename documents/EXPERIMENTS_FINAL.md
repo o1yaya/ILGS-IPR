@@ -12,7 +12,7 @@ environment.
 - Identity IDs are preserved. IPR changes the identity-loss weight only.
 - Main results use seeds `0 1 2`.
 - LERF-Mask resolution: `1`; 3D-OVS resolution: `4`.
-- OpenCLIP checkpoint: `/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin`
+- Default OpenCLIP checkpoint: `checkpoints/open_clip_pytorch_model.bin`
 
 Load the canonical paths and scene lists:
 

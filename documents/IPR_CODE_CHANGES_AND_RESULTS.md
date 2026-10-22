@@ -30,13 +30,14 @@
 | `script/run_ipr_strict_protocol_2gpu.sh` | LERF-Mask 双 GPU 多种子训练 | 是 |
 | `script/run_3dovs_controlled_2gpu.sh` | 3D-OVS 双 GPU 多种子训练 | 是 |
 | `script/eval_*`, `script/summarize_*` | 评测、审计和汇总 | 是 |
-| `config/experiments/paper_final.env` | 场景、种子、阈值和服务器结果路径的唯一配置入口 | 是 |
+| `config/experiments/paper_final.env` | 场景、种子、阈值和结果路径的唯一配置入口 | 是 |
 | `documents/EXPERIMENTS_FINAL.md` | 最终实验运行说明 | 是 |
-| `script/build_*`, `script/create_*`, `script/revise_*` | 论文图、SVG 和文稿生成工具 | 否，仅生成材料 |
-| `tmp*`, `.codex*`, `outputs/`, `output/` | 临时文件、导出文件和模型链接 | 否 |
-| `server_snapshot/` | 服务器快照与历史恢复材料 | 否，不作为运行入口 |
+| `script/export_*`, `script/generate_paper_experiment_figures.py` | 使用真实结果生成论文图 | 否，仅用于材料复现 |
+| `dataset/`, `checkpoints/`, `results/`, `output/` | 本地数据、权重和运行产物，均由 Git 忽略 | 否 |
 
-`script/README_FINAL.md`列出了当前保留的最终脚本。其他早期脚本不应被引用为论文方法或最终结果来源。
+`script/README_FINAL.md` 列出了当前保留的最终脚本。旧词表协议、
+DEVA/SAM2 掩码变体、官方论文复现尝试、抓取系统以及文稿编辑脚本已从
+公开代码树移除。
 
 ## 3. 相对 ILGS 的具体代码改动
 
@@ -130,7 +131,7 @@ L_{\mathrm{id}}^{\mathrm{IPR}}
 | LERF-Mask 分辨率参数 | `1` |
 | 3D-OVS 分辨率参数 | `4` |
 
-阈值、场景和服务器根目录统一定义在 `config/experiments/paper_final.env`。LERF-Mask 和 3D-OVS 的最终预处理脚本均接受 `CONSISTENCY_THRESHOLD`，默认值均为 `0.75`。
+阈值、场景和结果根目录统一定义在 `config/experiments/paper_final.env`。LERF-Mask 和 3D-OVS 的最终预处理脚本均接受 `CONSISTENCY_THRESHOLD`，默认值均为 `0.75`。
 
 ## 5. 已验证的提升
 
@@ -219,21 +220,17 @@ RESOLUTION=4 \
 bash script/run_3dovs_controlled_2gpu.sh
 ```
 
-更完整的评测和服务器报告路径见 `documents/EXPERIMENTS_FINAL.md`。
+更完整的评测与报告路径见 `documents/EXPERIMENTS_FINAL.md`。
 
-## 8. 建议保留与归档规则
+## 8. 发布仓库边界
 
-应保留：
+仓库仅保留 ILGS 核心、IPR 最终方法、受控训练评测、消融、阈值敏感性、
+LERF-OVS 附录评测和最终论文图生成入口。旧词表、DEVA/SAM2、trajectory、
+v2-anchor、抓取系统、PPT/DOCX/SVG 编辑器和失败复现脚本不属于发布版本。
 
-- 核心训练代码和 `refine_object_masks*.py`。
-- `script/README_FINAL.md` 中列出的最终脚本。
-- `config/experiments/paper_final.env` 与 `documents/EXPERIMENTS_FINAL.md`。
-- 生成最终表格所依据的原始 CSV/JSON 报告。
+`.gitignore` 排除了数据集、检查点、模型输出、生成图和临时目录；原始
+CSV/JSON 报告应随论文补充材料或数据存档单独发布，而不是提交到源码仓库。
 
-可以单独归档但不要作为复现入口：
+## 9.代码仓库
 
-- 旧词表、DEVA/SAM2、trajectory、v2-anchor 和官方论文复现尝试。
-- `script/` 中大量 SVG、PPT、DOCX 和论文图生成脚本。
-- `tmp*`、`.codex*`、`outputs/`、本地模型链接和渲染缓存。
-
-`.gitignore` 已将数据集、检查点、模型输出和临时生成目录排除，以便后续初始化 Git 或同步代码时只保留源码与必要配置。
+[o1yaya/ILGS-IPR](https://github.com/o1yaya/ILGS-IPR)

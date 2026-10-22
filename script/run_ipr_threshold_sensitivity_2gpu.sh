@@ -2,7 +2,7 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-ROOT="${ROOT:-/media/cx/data/cxdata/ilgs_ipr_threshold_sensitivity}"
+ROOT="${ROOT:-results/threshold_sensitivity}"
 LERF_ROOT="${LERF_ROOT:-$ROOT/lerf_mask}"
 OVS_ROOT="${OVS_ROOT:-$ROOT/3dovs}"
 LERF_DATASET_ROOT="${LERF_DATASET_ROOT:-dataset/lerf}"

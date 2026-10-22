@@ -2,7 +2,7 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-EXTERNAL_ROOT="${EXTERNAL_ROOT:-/media/cx/data/cxdata/ilgs_3dovs}"
+EXTERNAL_ROOT="${EXTERNAL_ROOT:-results/3dovs/main}"
 REUSE_ROOT="${REUSE_ROOT:-}"
 DATASET_ROOT="${DATASET_ROOT:-dataset/3dovs}"
 SCENES="${SCENES:-bed}"

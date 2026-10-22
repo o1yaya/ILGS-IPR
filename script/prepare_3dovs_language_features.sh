@@ -3,8 +3,8 @@ set -euo pipefail
 export PYTHONUNBUFFERED=1
 
 DATASET_ROOT="${DATASET_ROOT:-dataset/3dovs}"
-OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin}"
-SAM_CHECKPOINT="${SAM_CHECKPOINT:-ckpts/sam_vit_h_4b8939.pth}"
+OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-checkpoints/open_clip_pytorch_model.bin}"
+SAM_CHECKPOINT="${SAM_CHECKPOINT:-checkpoints/sam_vit_h_4b8939.pth}"
 SCENES="${SCENES:-bed}"
 GPU="${GPU:-0}"
 IMAGE_DIR="${IMAGE_DIR:-images_4}"

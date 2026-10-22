@@ -60,8 +60,8 @@ def heat(values, low, high):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--output_root', type=Path, default=Path('/media/cx/data/cxdata/ipr_method_assets'))
-    p.add_argument('--clip_checkpoint', default='/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin')
+    p.add_argument('--output_root', type=Path, default=Path('paper_figures/method_assets'))
+    p.add_argument('--clip_checkpoint', default='checkpoints/open_clip_pytorch_model.bin')
     p.add_argument('--views', nargs='+', type=int, default=[0,1,2,3,4])
     args = p.parse_args()
     query = 'Portuguese egg tart'

@@ -2,13 +2,13 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin}"
-EXTERNAL_ROOT="${EXTERNAL_ROOT:-/media/cx/data/cxdata/ilgs_ipr_strict_protocol}"
+OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-checkpoints/open_clip_pytorch_model.bin}"
+EXTERNAL_ROOT="${EXTERNAL_ROOT:-results/lerf_mask/main}"
 DATASET_ROOT="${DATASET_ROOT:-dataset/lerf}"
 AUTOENCODER_ROOT="${AUTOENCODER_ROOT:-autoencoder/ckpt/lerf}"
 SCENES="${SCENES:-figurines ramen teatime}"
 SEEDS="${SEEDS:-0 1 2}"
-VARIANTS="${VARIANTS:-strict_official strict_allview_evalvocab strict_trainview_evalvocab strict_trainview_independent}"
+VARIANTS="${VARIANTS:-official strict_trainview_consistency}"
 MASK_MODE="${MASK_MODE:-official}"
 
 [ -f "$OPENCLIP_CHECKPOINT" ] || { echo "Missing OpenCLIP checkpoint: $OPENCLIP_CHECKPOINT" >&2; exit 1; }

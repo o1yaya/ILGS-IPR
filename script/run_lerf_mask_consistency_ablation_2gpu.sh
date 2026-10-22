@@ -2,9 +2,9 @@
 set -euo pipefail
 export PYTHONUNBUFFERED=1
 
-EXTERNAL_ROOT="${EXTERNAL_ROOT:-/media/cx/data/cxdata/ilgs_lerf_mask_consistency_ablation}"
+EXTERNAL_ROOT="${EXTERNAL_ROOT:-results/lerf_mask/ablation}"
 DATASET_ROOT="${DATASET_ROOT:-dataset/lerf}"
-OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin}"
+OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-checkpoints/open_clip_pytorch_model.bin}"
 SCENES="${SCENES:-ramen figurines teatime}"
 SEEDS="${SEEDS:-0}"
 RESOLUTION="${RESOLUTION:-1}"
@@ -33,7 +33,7 @@ CONSISTENCY_THRESHOLD="$CONSISTENCY_THRESHOLD" \
 bash script/prepare_lerf_mask_ipr_consistency_ablation.sh \
   2>&1 | tee "$EXTERNAL_ROOT/logs/prepare_ablation.txt"
 
-python script/audit_3dovs_ipr_consistency_ablation.py \
+python script/audit_ipr_ablation_inputs.py \
   --dataset_root "$DATASET_ROOT" \
   --scenes $SCENES \
   --output "$EXTERNAL_ROOT/reports/input_ablation_audit.json" \

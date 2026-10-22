@@ -14,11 +14,9 @@ import numpy as np
 from PIL import Image
 
 
-DEFAULT_DATASET_ROOT = Path("/media/cx/data/cxdata/3DOVS")
-DEFAULT_OFFICIAL_ROOT = Path("/media/cx/data/cxdata/ilgs_3dovs/output/3dovs")
-DEFAULT_IPR_ROOT = Path(
-    "/media/cx/data/cxdata/ilgs_3dovs_consistency_t075_pilot/output/3dovs"
-)
+DEFAULT_DATASET_ROOT = Path("dataset/3dovs")
+DEFAULT_OFFICIAL_ROOT = Path("results/3dovs/baseline/output/3dovs")
+DEFAULT_IPR_ROOT = Path("results/3dovs/main/output/3dovs")
 RAW_MASK_DIR = "object_mask"
 CLEAN_MASK_DIR = "object_mask_refined_trainonly_strict"
 CONFIDENCE_DIR = "object_confidence_ipr_trainview_consistency_strict"
@@ -43,9 +41,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path(
-            "/media/cx/data/cxdata/datasets/real_main_figure_assets_20261018"
-        ),
+        default=Path("paper_figures/assets"),
     )
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()

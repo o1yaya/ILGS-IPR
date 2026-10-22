@@ -15,17 +15,27 @@ conda activate ILGS
 # CUDA 11.8
 conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
 
-# Install ILGS
-git clone https://github.com/DCVL-3D/ILGS_release.git --recursive
-cd ILGS_release
+# Install ILGS-IPR
+git clone https://github.com/o1yaya/ILGS-IPR.git
+cd ILGS-IPR
 
 pip install -r requirements.txt
 
 pip install submodules/ILGS-rasterization
 pip install submodules/simple-knn
 ```
-### Install Segment-Anything-Langsplt and download the checkpoint SAM
+### Install Segment-Anything-Langsplat and download checkpoints
 
 
 `Segment-Anything-Langsplt` : [segment-anything-langsplat](https://github.com/minghanqin/segment-anything-langsplat) </br>
 `SAM checkpoints from` [SAM](https://github.com/facebookresearch/segment-anything)
+
+Place the local model files at:
+
+```text
+checkpoints/sam_vit_h_4b8939.pth
+checkpoints/open_clip_pytorch_model.bin
+```
+
+The OpenCLIP checkpoint is the ViT-B/16 LAION-2B model used by the final IPR
+preprocessing and evaluation scripts.

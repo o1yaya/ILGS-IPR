@@ -35,9 +35,9 @@ def load_maps(folder):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Audit strict 3D-OVS IPR ablation inputs.")
-    parser.add_argument("--dataset_root", default="dataset/3dovs")
-    parser.add_argument("--scenes", nargs="+", default=["bench", "snacks", "covered_desk"])
+    parser = argparse.ArgumentParser(description="Audit strict IPR ablation inputs.")
+    parser.add_argument("--dataset_root", default="dataset/lerf")
+    parser.add_argument("--scenes", nargs="+", default=["ramen", "figurines", "teatime"])
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
 

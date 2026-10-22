@@ -3,7 +3,7 @@ set -euo pipefail
 export PYTHONUNBUFFERED=1
 
 DATASET_ROOT="${DATASET_ROOT:-dataset/3dovs}"
-OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-/media/cx/data/cxdata/models/openclip/open_clip_pytorch_model.bin}"
+OPENCLIP_CHECKPOINT="${OPENCLIP_CHECKPOINT:-checkpoints/open_clip_pytorch_model.bin}"
 SCENES="${SCENES:-bench covered_desk}"
 CONSISTENCY_THRESHOLD="${CONSISTENCY_THRESHOLD:-0.75}"
 
